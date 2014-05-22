@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+			<meta charset="UTF-8">
+			<title>Tree</title>
+			<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="css/main.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+			<script src="js/main.js"></script>
+		</head>
+	<body ng-app="myApp">
+		<script type="text/ng-template"  id="tree_renderer.html">
+	    {{data.name}}
+	    <span class="glyphicon glyphicon-plus-sign" ng-click="add(data)"></span>
+	    <span class="glyphicon glyphicon-pencil" ng-click="edit(data)"></span>
+	    <span class="glyphicon glyphicon-minus-sign" ng-click="deleteOneNode($parent, data, $index)" ng-show="data.nodes.length == 0"></span>
+	    <span class="glyphicon glyphicon-remove-sign" ng-click="delete(data)" ng-show="data.nodes.length > 0"></span>
+	    <ul>
+	        <li ng-repeat="data in data.nodes" ng-include="'tree_renderer.html'"></li>
+	    </ul>
+		</script>
+		<div class="container">
+			<div class="tree">
+				<ul ng-app="Application" ng-controller="TreeController">
+		    	<li ng-repeat="data in tree" ng-include="'tree_renderer.html'"></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
